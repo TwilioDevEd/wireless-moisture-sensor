@@ -9,7 +9,7 @@
  * Below, change:
  * - TOO_DRY : Treshold to warn about a too dry plant.
  */
-var TOO_DRY = 30; 
+const TOO_DRY = 30; 
 
 
 // Validate incoming passcode from the Helium
@@ -22,8 +22,8 @@ function auth(code) {
 exports.handler = function(context, event, callback) {
     if (!isNaN(event.percent) && auth(event.passcode)) {
       if (parseFloat(event.percent) < TOO_DRY) {
-        let msg = `Water your plant! It's reading only ${event.percent}% humidity.`;
-        var client = context.getTwilioClient();
+        const msg = `Water your plant! It's reading only ${event.percent}% humidity.`;
+        const client = context.getTwilioClient();
         return client.messages.create({
           to: context.YOUR_PHONE_NUMBER, 
           from: context.TWILIO_NUMBER, 
